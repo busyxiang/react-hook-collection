@@ -2,7 +2,7 @@
 
 > Collection of custom react hooks
 
-[![NPM](https://img.shields.io/npm/v/react-hook-collection.svg)](https://www.npmjs.com/package/react-hook-collection) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-hook-collection.svg)](https://www.npmjs.com/package/@busyxiang/react-hook-collection) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -13,14 +13,14 @@ npm install --save react-hook-collection
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import MyComponent from 'react-hook-collection'
-import 'react-hook-collection/dist/index.css'
+import MyComponent from 'react-hook-collection';
+import 'react-hook-collection/dist/index.css';
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <MyComponent />;
   }
 }
 ```
