@@ -19,7 +19,7 @@ type Props = {
   apiKey: string;
 };
 
-const useGoogleDrivePicker = (
+export const useGoogleDrivePicker = (
   props: Props,
 ): [
   (config?: GoogleDrivePickerConfig) => void,
@@ -145,5 +145,3 @@ const useGoogleDrivePicker = (
 
   return [openPicker, callbackInfo];
 };
-
-export default useGoogleDrivePicker;

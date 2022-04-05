@@ -15,10 +15,12 @@ yarn add @busyxiang/react-hook-collection
 ```
 
 ## List
+
 - useMounted
 - useLocalStorage
 - useInjectScript
 - useGoogleDrivePicker
+- useGeolocation
 
 ## License
 
