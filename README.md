@@ -21,6 +21,7 @@ yarn add @busyxiang/react-hook-collection
 - useInjectScript
 - useGoogleDrivePicker
 - useGeolocation
+- useNetworkStatus
 
 ## License
 
