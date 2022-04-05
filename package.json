@@ -5,6 +5,11 @@
   "author": "Ray Foo",
   "license": "MIT",
   "repository": "https://github.com/busyxiang/react-hook-collection",
+  "keywords": [
+    "react",
+    "custom hook",
+    "google"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
