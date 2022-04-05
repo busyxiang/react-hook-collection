@@ -7,7 +7,11 @@
 ## Install
 
 ```bash
-npm install --save react-hook-collection
+npm install --save @busyxiang/react-hook-collection
+```
+
+```bash
+yarn add @busyxiang/react-hook-collection
 ```
 
 ## Usage
@@ -27,4 +31,4 @@ class Example extends Component {
 
 ## License
 
-MIT © [Ray Foo](https://github.com/Ray Foo)
+MIT © [Ray Foo](https://github.com/busyxiang)
