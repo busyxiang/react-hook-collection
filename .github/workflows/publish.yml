@@ -19,13 +19,11 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - run: echo 'publish job output, ${{ steps.publish.outputs.type }}, ${{ steps.publish.outputs.version }}, ${{ steps.publish.outputs.old-version }}'
   success-publish:
     needs: publish
     runs-on: ubuntu-latest
     if: needs.publish.outputs.publish-status != 'none'
     steps:
-      - run: echo 'success-publish job output, ${{ needs.publish.outputs.publish-status }}, ${{ needs.publish.outputs.publish-version }}, ${{ needs.publish.outputs.publish-old-version }}'
       - name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
