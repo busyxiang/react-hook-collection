@@ -31,5 +31,5 @@ export const useFetch = <T>(config: FetchConfig) => {
     }
   }, [url]);
 
-  return { data, loading, error };
+  return { data, loading, error, refetch: handleLoadData };
 };
