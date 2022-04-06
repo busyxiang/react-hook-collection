@@ -1,6 +1,8 @@
 name: Notification on publish
 
-on: release
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
