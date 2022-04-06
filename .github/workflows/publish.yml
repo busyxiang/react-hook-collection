@@ -11,6 +11,19 @@ jobs:
         with:
           node-version: 12
       - run: yarn install
-      - uses: JS-DevTools/npm-publish@v1
+      - id: publish
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+      - if: steps.publish.outputs.type != 'none'
+  notifyNewVersionPublished:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - if: needs,publish.steps.publish.outputs.type != 'none'
+        name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'New NPM version has been published'
