@@ -24,6 +24,7 @@ yarn add @busyxiang/react-hook-collection
 - useNetworkStatus
 - useFetch
 - useClipboard
+- useWindowSize
 
 ## License
 
