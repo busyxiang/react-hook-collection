@@ -6,9 +6,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     outputs:
-      publish-status: ${{ steps.publish.output.type }}
-      publish-version: ${{ steps.publish.output.version }}
-      publish-old-version: ${{ steps.publish.output.old-version }}
+      publish-status: ${{ steps.publish.outputs.type }}
+      publish-version: ${{ steps.publish.outputs.version }}
+      publish-old-version: ${{ steps.publish.outputs.old-version }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -19,9 +19,11 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+      - run: echo 'publish job output, ${{ steps.publish.outputs.type }}, ${{ steps.publish.outputs.version }}, ${{ steps.publish.outputs.old-version }}'
   success-publish:
     needs: publish
     runs-on: ubuntu-latest
+    run: echo 'success-publish job output, ${{ needs.publish.outputs.publish-status }}, ${{ needs.publish.outputs.publish-version }}, ${{ needs.publish.outputs.publish-old-version }}'
     if: needs.publish.outputs.publish-status != 'none'
     steps:
       - name: Discord notification
