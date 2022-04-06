@@ -25,6 +25,7 @@ yarn add @busyxiang/react-hook-collection
 - useFetch
 - useClipboard
 - useWindowSize
+- useToggle
 
 ## License
 
