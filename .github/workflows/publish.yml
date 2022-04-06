@@ -19,7 +19,7 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
-      - if: needs,publish.steps.publish.outputs.type != 'none'
+      - if: needs.publish.steps.publish.outputs.type != 'none'
         name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
