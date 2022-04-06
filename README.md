@@ -23,6 +23,7 @@ yarn add @busyxiang/react-hook-collection
 - useGeolocation
 - useNetworkStatus
 - useFetch
+- useClipboard
 
 ## License
 

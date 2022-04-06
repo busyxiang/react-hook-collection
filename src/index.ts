@@ -5,5 +5,6 @@ import useNetworkStatus from './useNetworkStatus';
 
 export * from './useGoogleDrivePicker';
 export * from './useFetch';
+export * from './useClipboard';
 
 export { useMounted, useLocalStorage, useInjectScript, useNetworkStatus };
