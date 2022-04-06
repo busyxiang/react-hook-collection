@@ -5,6 +5,10 @@ on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
+    outputs:
+      publish-status: ${{ steps.publish.output.type }}
+      publish-version: ${{ steps.publish.output.version }}
+      publish-old-version: ${{ steps.publish.output.old-version }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -18,11 +22,11 @@ jobs:
   success-publish:
     needs: publish
     runs-on: ubuntu-latest
+    if: needs.publish.outputs.publish-status != 'none'
     steps:
-      - if: needs.publish.outputs.type != 'none'
-        name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'New NPM version has been published'
+      name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'New NPM version has been published (${{ needs.publish.outputs.publish-old-version }} => ${{ needs.publish.outputs.publish-version }})'
