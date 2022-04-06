@@ -2,7 +2,7 @@
 
 > Collection of custom react hooks
 
-[![NPM](https://img.shields.io/npm/v/@busyxiang/react-hook-collection.svg)](https://www.npmjs.com/package/@busyxiang/react-hook-collection) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@busyxiang/react-hook-collection.svg)](https://www.npmjs.com/package/@busyxiang/react-hook-collection) [![NPM Publish](https://github.com/busyxiang/react-hook-collection/actions/workflows/publish.yml/badge.svg)](https://github.com/busyxiang/react-hook-collection/actions/workflows/publish.yml) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
