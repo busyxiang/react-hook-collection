@@ -22,6 +22,7 @@ yarn add @busyxiang/react-hook-collection
 - useGoogleDrivePicker
 - useGeolocation
 - useNetworkStatus
+- useFetch
 
 ## License
 
