@@ -24,9 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.publish.outputs.publish-status != 'none'
     steps:
-      name: Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
-      with:
-        args: 'New NPM version has been published (${{ needs.publish.outputs.publish-old-version }} => ${{ needs.publish.outputs.publish-version }})'
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'New NPM version has been published (${{ needs.publish.outputs.publish-old-version }} => ${{ needs.publish.outputs.publish- }})'
