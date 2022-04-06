@@ -15,11 +15,11 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-  notifyNewVersionPublished:
+  success-publish:
     needs: publish
     runs-on: ubuntu-latest
     steps:
-      - if: needs.publish.steps.publish.outputs.type != 'none'
+      - if: needs.publish.outputs.type != 'none'
         name: Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
