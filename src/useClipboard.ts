@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
 
-export type useClipboardProps = {
+export type UseClipboardProps = {
   text: string;
   successDurationInSeconds?: number;
 };
 
-export const useClipboard = (props: useClipboardProps) => {
+export const useClipboard = (props: UseClipboardProps) => {
   const { text, successDurationInSeconds } = props;
 
   const [isCopied, setIsCopied] = useState<boolean>(false);

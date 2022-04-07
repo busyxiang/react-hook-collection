@@ -29,6 +29,7 @@ yarn add @busyxiang/react-hook-collection
 - useClosure
 - useValue
 - useInterval
+- useIntersectionObserver
 
 ## License
 

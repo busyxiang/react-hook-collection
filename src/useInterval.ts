@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
-export type useIntervalProps = {
+export type UseIntervalProps = {
   intervalInSeconds: number | null;
   callback: () => void;
 };
 
-export const useInterval = (props: useIntervalProps) => {
+export const useInterval = (props: UseIntervalProps) => {
   const { intervalInSeconds, callback } = props;
 
   useEffect(() => {

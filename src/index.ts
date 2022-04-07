@@ -5,6 +5,7 @@ import useNetworkStatus from './useNetworkStatus';
 import useWindowSize from './useWindowSize';
 import useToggle from './useToggle';
 import useClosure from './useClosure';
+import useIntersectionObserver from './useIntersectionObserver';
 
 export * from './useGoogleDrivePicker';
 export * from './useFetch';
@@ -20,4 +21,5 @@ export {
   useWindowSize,
   useToggle,
   useClosure,
+  useIntersectionObserver,
 };
