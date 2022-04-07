@@ -30,6 +30,7 @@ yarn add @busyxiang/react-hook-collection
 - useValue
 - useInterval
 - useIntersectionObserver
+- useTimeout
 
 ## License
 

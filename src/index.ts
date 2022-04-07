@@ -12,6 +12,7 @@ export * from './useFetch';
 export * from './useClipboard';
 export * from './useValue';
 export * from './useInterval';
+export * from './useTimeout';
 
 export {
   useMounted,
