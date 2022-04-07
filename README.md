@@ -26,6 +26,7 @@ yarn add @busyxiang/react-hook-collection
 - useClipboard
 - useWindowSize
 - useToggle
+- useClosure
 
 ## License
 
