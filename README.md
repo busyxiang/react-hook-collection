@@ -31,6 +31,7 @@ yarn add @busyxiang/react-hook-collection
 - useInterval
 - useIntersectionObserver
 - useTimeout
+- useAudio
 
 ## License
 
