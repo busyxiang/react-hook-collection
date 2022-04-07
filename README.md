@@ -28,6 +28,7 @@ yarn add @busyxiang/react-hook-collection
 - useToggle
 - useClosure
 - useValue
+- useInterval
 
 ## License
 
