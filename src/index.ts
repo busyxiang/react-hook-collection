@@ -9,6 +9,7 @@ import useClosure from './useClosure';
 export * from './useGoogleDrivePicker';
 export * from './useFetch';
 export * from './useClipboard';
+export * from './useValue';
 
 export {
   useMounted,

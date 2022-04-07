@@ -27,6 +27,7 @@ yarn add @busyxiang/react-hook-collection
 - useWindowSize
 - useToggle
 - useClosure
+- useValue
 
 ## License
 
