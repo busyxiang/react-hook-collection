@@ -32,6 +32,7 @@ yarn add @busyxiang/react-hook-collection
 - useIntersectionObserver
 - useTimeout
 - useAudio
+- useLazyFetch
 
 ## License
 

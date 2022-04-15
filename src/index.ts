@@ -14,6 +14,7 @@ export * from './useValue';
 export * from './useInterval';
 export * from './useTimeout';
 export * from './useAudio';
+export * from './useLazyFetch';
 
 export {
   useMounted,
