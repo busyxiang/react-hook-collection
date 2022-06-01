@@ -1,8 +1,6 @@
 import { useState, useCallback } from 'react';
 
-type ReturnType = [boolean, () => void, () => void];
-
-const useToggle = (initialValue?: boolean): ReturnType => {
+const useToggle = (initialValue?: boolean) => {
   const [on, setOn] = useState<boolean>(!!initialValue);
 
   const toggle = useCallback(() => {
@@ -15,7 +13,7 @@ const useToggle = (initialValue?: boolean): ReturnType => {
     }
   }, [initialValue]);
 
-  return [on, toggle, reset];
+  return [on, toggle, reset] as const;
 };
 
 export default useToggle;

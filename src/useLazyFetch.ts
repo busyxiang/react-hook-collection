@@ -31,5 +31,5 @@ export const useLazyFetch = <T>(props: UseLazyFetchProps) => {
     }
   }, [url]);
 
-  return [handleLoadData, { data, loading, error }];
+  return [handleLoadData, { data, loading, error }] as const;
 };

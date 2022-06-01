@@ -5,10 +5,7 @@ type Props<T> = {
   defaultValue: T;
 };
 
-const useLocalStorage = <T extends string>({
-  key,
-  defaultValue,
-}: Props<T>): [T, (value: T) => void, () => void] => {
+const useLocalStorage = <T extends string>({ key, defaultValue }: Props<T>) => {
   const [storedValue, setStoredValue] = useState<T>(
     (localStorage.getItem(key) as T) || defaultValue,
   );
@@ -25,7 +22,7 @@ const useLocalStorage = <T extends string>({
     localStorage.removeItem(key);
   };
 
-  return [storedValue, setStorageValue, removeStorage];
+  return [storedValue, setStorageValue, removeStorage] as const;
 };
 
 export default useLocalStorage;
