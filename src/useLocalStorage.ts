@@ -9,7 +9,6 @@ const useLocalStorage = <T extends string>({ key, defaultValue }: Props<T>) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = localStorage.getItem(key);
-      console.log(item);
 
       return item ? JSON.parse(item) : defaultValue;
     } catch (error) {
