@@ -1,5 +1,11 @@
 # @busyxiang/react-hook-collection
 
+## 0.1.7
+
+### Patch Changes
+
+- 998d7f2: test
+
 ## 0.1.6
 
 ### Patch Changes
