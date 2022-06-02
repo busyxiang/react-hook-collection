@@ -72,6 +72,7 @@
   ],
   "dependencies": {
     "@actions/exec": "^1.1.1",
+    "@changesets/changelog-git": "^0.1.11",
     "@changesets/cli": "^2.22.0"
   }
 }
