@@ -69,6 +69,7 @@
     "dist"
   ],
   "dependencies": {
+    "@actions/exec": "^1.1.1",
     "@changesets/cli": "^2.22.0"
   }
 }
