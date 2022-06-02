@@ -27,6 +27,7 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
+    "version": "changeset version",
     "changeset": "changeset",
     "bump": "node ./scripts/bump.js",
     "release": "node ./scripts/release.js"
