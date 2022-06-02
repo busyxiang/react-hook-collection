@@ -1,6 +1,6 @@
 {
   "name": "@busyxiang/react-hook-collection",
-  "version": "0.0.18",
+  "version": "0.1.0",
   "description": "Collection of custom react hooks",
   "author": "Ray Foo",
   "license": "MIT",
@@ -67,5 +67,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@changesets/cli": "^2.22.0"
+  }
 }

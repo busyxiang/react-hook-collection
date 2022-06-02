@@ -6,23 +6,35 @@ type Props<T> = {
 };
 
 const useLocalStorage = <T extends string>({ key, defaultValue }: Props<T>) => {
-  const [storedValue, setStoredValue] = useState<T>(
-    (localStorage.getItem(key) as T) || defaultValue,
-  );
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = localStorage.getItem(key);
 
-  const setStorageValue = (value: T) => {
-    localStorage.setItem(key, value);
+      return item ? JSON.parse(item) : defaultValue;
+    } catch (error) {
+      console.log(error);
+      return defaultValue;
+    }
+  });
 
-    if (value !== storedValue) {
-      setStoredValue(value);
+  const setValue = (value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+
+      setStoredValue(valueToStore);
+
+      localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const removeStorage = () => {
+  const removeValue = () => {
     localStorage.removeItem(key);
   };
 
-  return [storedValue, setStorageValue, removeStorage] as const;
+  return [storedValue, setValue, removeValue] as const;
 };
 
 export default useLocalStorage;
