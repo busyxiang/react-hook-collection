@@ -1,5 +1,11 @@
 # @busyxiang/react-hook-collection
 
+## 0.1.4
+
+### Patch Changes
+
+- dac096d: test
+
 ## 0.1.3
 
 ### Patch Changes
