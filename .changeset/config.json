@@ -1,6 +1,9 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.0.0/schema.json",
-  "changelog": "@changesets/changelog-git",
+  "changelog": [
+    "@changesets/changelog-git",
+    { "repo": "busyxiang/react-hooks-collection" }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],
