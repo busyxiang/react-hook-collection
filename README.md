@@ -33,6 +33,7 @@ yarn add @busyxiang/react-hook-collection
 - useTimeout
 - useAudio
 - useLazyFetch
+- useStateHistory
 
 ## License
 
