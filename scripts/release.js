@@ -29,7 +29,7 @@ process.chdir(path.join(__dirname, '..'));
   await exec('git', ['add', '--force', 'dist']);
   await exec('git', ['commit', '-m', tag]);
 
-  await exec('changeset', ['tag']);
+  await exec('changeset', ['publish']);
 
   await exec('git', [
     'push',
