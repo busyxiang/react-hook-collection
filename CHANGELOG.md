@@ -1,5 +1,11 @@
 # @busyxiang/react-hook-collection
 
+## 0.2.1
+
+### Patch Changes
+
+- f0e4b3e: Fix useIntersectionObserver did not update the state correctly
+
 ## 0.2.0
 
 ### Minor Changes
