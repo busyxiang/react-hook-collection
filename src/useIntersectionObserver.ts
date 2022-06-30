@@ -1,32 +1,28 @@
-import { useState, RefObject, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 type UseIntersectionObserverProps = {
-  elementRef: RefObject<Element>;
+  element: Element;
   observerConfig?: IntersectionObserverInit;
 };
 
 const useIntersectionObserver = (props: UseIntersectionObserverProps) => {
-  const { elementRef, observerConfig } = props;
+  const { element, observerConfig } = props;
 
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
 
   useEffect(() => {
-    const node = elementRef.current;
-
-    if (!node) {
+    if (!element) {
       return;
     }
 
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setIsIntersecting(true);
-      }
+      setIsIntersecting(entries[0].isIntersecting);
     }, observerConfig);
 
-    observer.observe(node);
+    observer.observe(element);
 
     return () => observer.disconnect();
-  }, [elementRef, observerConfig]);
+  }, [element, observerConfig]);
 
   return isIntersecting;
 };
