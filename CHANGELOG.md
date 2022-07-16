@@ -1,5 +1,11 @@
 # @busyxiang/react-hook-collection
 
+## 0.3.0
+
+### Minor Changes
+
+- 820118f: Add useMediaQuery hook
+
 ## 0.2.1
 
 ### Patch Changes
