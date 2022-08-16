@@ -17,63 +17,55 @@ type Props = {
   appId: string;
   clientId: string;
   apiKey: string;
+  onFilePicked: (result: google.picker.ResponseObject) => void;
 };
 
-export const useGoogleDrivePicker = (
-  props: Props,
-): [
-  (config?: GoogleDrivePickerConfig) => void,
-  google.picker.ResponseObject | undefined,
-] => {
-  const { appId, clientId, apiKey } = props;
+export const useGoogleDrivePicker = (props: Props) => {
+  const { appId, clientId, apiKey, onFilePicked } = props;
 
   const [pickerApiLoaded, setPickerApiLoaded] = useState(false);
-  const [callbackInfo, setCallbackInfo] =
-    useState<google.picker.ResponseObject>();
   const [pickerConfig, setPickerConfig] = useState<GoogleDrivePickerConfig>();
 
   const oauthTokenRef = useRef<string>();
+  const pickerRef = useRef<google.picker.Picker>();
 
-  const { loaded } = useInjectScript({
+  const { loaded: gapiLoaded } = useInjectScript({
     url: 'https://apis.google.com/js/api.js',
   });
-
-  const scope = ['https://www.googleapis.com/auth/drive'];
+  const { loaded } = useInjectScript({
+    url: 'https://accounts.google.com/gsi/client',
+  });
 
   useEffect(() => {
     const loadApis = () => {
-      gapi.load('auth', () => {});
       gapi.load('picker', { callback: handlePickerApiLoaded });
     };
 
-    if (loaded) {
+    if (gapiLoaded) {
       loadApis();
     }
-  }, [loaded]);
+  }, [gapiLoaded]);
 
   const handlePickerApiLoaded = () => {
     setPickerApiLoaded(true);
   };
 
   const handleAuth = () => {
-    gapi.auth.authorize(
-      {
-        client_id: clientId,
-        scope,
-        immediate: false,
-      },
-      handleAuthResult,
-    );
-  };
-
-  const handleAuthResult = (authResult: {
-    access_token: string;
-    error: string;
-  }) => {
-    if (authResult && !authResult.error) {
-      oauthTokenRef.current = authResult.access_token;
-      createPicker();
+    if (!loaded) {
+      return;
     }
+
+    const client = google.accounts.oauth2.initTokenClient({
+      client_id: clientId,
+      scope: 'https://www.googleapis.com/auth/drive',
+      callback: (res) => {
+        if (res && res.access_token) {
+          oauthTokenRef.current = res.access_token;
+          createPicker();
+        }
+      },
+    });
+    client.requestAccessToken();
   };
 
   const openPicker = (config?: GoogleDrivePickerConfig) => {
@@ -134,14 +126,52 @@ export const useGoogleDrivePicker = (
       picker.enableFeature(google.picker.Feature.SUPPORT_DRIVES);
     }
 
-    picker.build().setVisible(true);
+    const buildPicker = picker.build();
+    buildPicker.setVisible(true);
+
+    pickerRef.current = buildPicker;
   };
 
   const handlePickerCallback = (result: google.picker.ResponseObject) => {
     if (result.action === google.picker.Action.PICKED) {
-      setCallbackInfo(result);
+      onFilePicked(result);
+
+      pickerRef.current?.setVisible(false);
+      pickerRef.current?.dispose();
+      pickerRef.current = undefined;
+    } else if (result.action === google.picker.Action.CANCEL) {
+      pickerRef.current?.setVisible(false);
+      pickerRef.current?.dispose();
+      pickerRef.current = undefined;
     }
   };
 
-  return [openPicker, callbackInfo];
+  const handleMakeDocumentShareable = async (
+    document: google.picker.DocumentObject,
+  ) => {
+    if (!oauthTokenRef.current) {
+      return;
+    }
+
+    await fetch(
+      `https://www.googleapis.com/drive/v3/files/${document.id}/permissions`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${oauthTokenRef.current}`,
+        },
+        body: JSON.stringify({
+          role: 'reader',
+          type: 'anyone',
+        }),
+      },
+    );
+  };
+
+  return {
+    openPicker,
+    loaded: pickerApiLoaded,
+    isLoggedIn: !!oauthTokenRef.current,
+    handleMakeDocumentShareable,
+  };
 };

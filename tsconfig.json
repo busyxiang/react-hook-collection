@@ -16,7 +16,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["gapi", "google.picker"]
+    "types": ["gapi", "google.picker", "google.accounts"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "example"]
