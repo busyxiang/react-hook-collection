@@ -1,5 +1,11 @@
 # @busyxiang/react-hook-collection
 
+## 0.3.1
+
+### Patch Changes
+
+- c70ec4e: Update useGoogleDrivePicker to use latest oauth api and fix useGoogleDrivePicker does not perform cleanup after close the picker window
+
 ## 0.3.0
 
 ### Minor Changes
