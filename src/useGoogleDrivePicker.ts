@@ -3,14 +3,15 @@ import { useState, useEffect, useRef } from 'react';
 import useInjectScript from './useInjectScript';
 
 export type GoogleDrivePickerConfig = {
-  viewId: google.picker.ViewId;
-  viewMode: google.picker.DocsViewMode;
+  viewId?: google.picker.ViewId;
+  viewMode?: google.picker.DocsViewMode;
   setIncludeFolders?: boolean;
   setSelectFolderEnabled?: boolean;
   supportSharedDrives?: boolean;
   multi?: boolean;
   mimeTypes?: string[];
   locale?: string;
+  additionalViews?: google.picker.ViewId[];
 };
 
 type Props = {
@@ -24,10 +25,10 @@ export const useGoogleDrivePicker = (props: Props) => {
   const { appId, clientId, apiKey, onFilePicked } = props;
 
   const [pickerApiLoaded, setPickerApiLoaded] = useState(false);
-  const [pickerConfig, setPickerConfig] = useState<GoogleDrivePickerConfig>();
 
   const oauthTokenRef = useRef<string>();
   const pickerRef = useRef<google.picker.Picker>();
+  const configRef = useRef<GoogleDrivePickerConfig>();
 
   const { loaded: gapiLoaded } = useInjectScript({
     url: 'https://apis.google.com/js/api.js',
@@ -69,7 +70,7 @@ export const useGoogleDrivePicker = (props: Props) => {
   };
 
   const openPicker = (config?: GoogleDrivePickerConfig) => {
-    setPickerConfig(config);
+    configRef.current = config;
 
     if (!oauthTokenRef.current) {
       handleAuth();
@@ -85,18 +86,20 @@ export const useGoogleDrivePicker = (props: Props) => {
     }
 
     const {
-      viewId = google.picker.ViewId.DOCS,
-      viewMode = google.picker.DocsViewMode.GRID,
+      viewId,
+      viewMode,
       multi,
       supportSharedDrives,
       mimeTypes,
       locale = 'en-US',
       setIncludeFolders,
       setSelectFolderEnabled,
-    } = pickerConfig || {};
+      additionalViews,
+    } = configRef.current || {};
 
     const view = new google.picker.DocsView(viewId);
-    view.setMode(viewMode);
+
+    viewMode && view.setMode(viewMode);
 
     if (setIncludeFolders) {
       view.setIncludeFolders(true);
@@ -117,6 +120,12 @@ export const useGoogleDrivePicker = (props: Props) => {
       .setLocale(locale)
       .setCallback(handlePickerCallback)
       .addView(view);
+
+    additionalViews?.forEach((view) => {
+      const innerView = new google.picker.DocsView(view);
+
+      picker.addView(innerView);
+    });
 
     if (multi) {
       picker.enableFeature(google.picker.Feature.MULTISELECT_ENABLED);
