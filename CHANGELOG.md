@@ -1,5 +1,11 @@
 # @busyxiang/react-hook-collection
 
+## 0.3.2
+
+### Patch Changes
+
+- ff4d6c3: Fix useGoogleDrivePicker hook config does not apply immediately
+
 ## 0.3.1
 
 ### Patch Changes
