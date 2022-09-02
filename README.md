@@ -1,3 +1,6 @@
+# DEPRECATED
+> This repo migrated to [https://github.com/busyxiang/react](https://github.com/busyxiang/toolbox/tree/main/packages/react)
+
 # react-hook-collection
 
 > Collection of custom react hooks
